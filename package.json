@@ -1,0 +1,32 @@
+{
+  "name": "broccoli-styleguide-generator",
+  "version": "0.1.0-alpha.1",
+  "description": "Generate a styleguide consist of \"broccoli-html-editor\" modules.",
+  "main": "libs/main.js",
+  "scripts": {
+    "submodules-update": "rm -rfv node_modules/px2style; npm install; gulp;",
+    "test": "mocha --ui tdd ./tests/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pickles2/node-broccoli-styleguide-generator.git"
+  },
+  "keywords": [
+    "pickles2"
+  ],
+  "author": "Tomoya Koyanagi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pickles2/node-broccoli-styleguide-generator/issues"
+  },
+  "homepage": "https://github.com/pickles2/node-broccoli-styleguide-generator#readme",
+  "devDependencies": {
+    "broccoli-html-editor": "file:submodules/broccoli-html-editor",
+    "mocha": "^3.2.0"
+  },
+  "dependencies": {
+    "es6-promise": "^4.0.5",
+    "iterate79": "^1.0.0",
+    "utils79": "0.0.4"
+  }
+}
