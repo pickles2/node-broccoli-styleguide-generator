@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+<title>Style Guide</title>
+<link rel="stylesheet" href="./index_files/resources/styleguide.css" />
+<script src="./index_files/resources/styleguide.js"></script>
+<link rel="stylesheet" href="./index_files/styles.css" />
+<script src="./index_files/scripts.js"></script>
+</head>
+<body>
+<h1>Style Guide</h1>
+
+<% for (var pkgId in pkgList) { %>
+<h2><%= pkgList[pkgId].packageName %> (<%= pkgList[pkgId].packageId %>)</h2>
+<% catList = pkgList[pkgId].categories %>
+
+<% for (var catId in catList) { %>
+<h3><%= catList[catId].categoryName %> (<%= catList[catId].categoryId %>)</h3>
+<% modList = catList[catId].modules %>
+
+<% for (var modId in modList) { %>
+<h4><%= modList[modId].moduleName %> (<%= modList[modId].moduleId %>)</h4>
+<% console.log(modList[modId]) %>
+
+
+<% } %>
+
+
+
+<% } %>
+
+
+
+<% } %>
+
+
+</body>
+</html>

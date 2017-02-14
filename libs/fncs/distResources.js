@@ -33,6 +33,16 @@ module.exports = function(broccoli, pathDistDir, callback){
 				});
 			},
 			function(it1){
+				// copy styleguide resources
+				fsx.copy(
+					__dirname+'/../resources/',
+					require('path').resolve(pathDistDir, 'index_files/resources/'),
+					function(){
+						it1.next();
+					}
+				);
+			},
+			function(it1){
 				callback(true);
 			}
 		]

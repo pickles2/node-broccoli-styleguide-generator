@@ -19,22 +19,6 @@ module.exports = function(broccoli, pathDistDir, callback){
 				});
 			},
 			function(it1){
-				// パッケージ名からモジュールの一覧を取得
-				it79.ary(
-					pkgList,
-					function(it2, row, idx){
-						broccoli.getModuleListByPackageId(row.packageId, function(_modList){
-							console.log(_modList);
-							console.log(_modList.categories);
-							it2.next();
-						});
-					},
-					function(){
-						it1.next();
-					}
-				);
-			},
-			function(it1){
 				// build index.html
 				mkIndexHtml(function(html){
 					fs.writeFile( require('path').resolve(pathDistDir, 'index.html'), html, {}, function(){
@@ -49,29 +33,35 @@ module.exports = function(broccoli, pathDistDir, callback){
 	);
 
 	/**
+	 * ejs テンプレートにデータをバインドする
+	 */
+	function bindEjs( tpl, data, options ){
+		var ejs = require('ejs');
+		var rtn = '';
+		try {
+			var template = ejs.compile(tpl.toString(), options);
+			rtn = template(data);
+		} catch (e) {
+			var errorMessage = 'TemplateEngine "EJS" Rendering ERROR.';
+			console.error( errorMessage );
+			rtn = errorMessage;
+		}
+
+		return rtn;
+	}
+
+	/**
 	 * index.html のHTMLソースを作成する
 	 */
 	function mkIndexHtml(callback){
 		var html = '';
-		html += '<!doctype html>'+"\n";
-		html += '<html>'+"\n";
-		html += '<head>'+"\n";
-		html += '<title>broccoli-html-editor</title>'+"\n";
-		html += '<link rel="stylesheet" href="./index_files/styles.css" />'+"\n";
-		html += '<script src="./index_files/scripts.js"></script>'+"\n";
-		html += '</head>'+"\n";
-		html += '<body>'+"\n";
-		html += '<h1>Style Guide</h1>'+"\n";
-		it79.ary(pkgList,
-			function(it1, row, idx){
-				html += '<h2>'+ utils79.h( row.packageName ) +'</h2>'+"\n";
-				it1.next();
-			}, function(){
-				html += '</body>'+"\n";
-				html += '</html>'+"\n";
-				callback(html);
+		html = bindEjs(
+			require('fs').readFileSync( __dirname+'/../tpls/index.html.ejs' ),
+			{
+				'pkgList': pkgList
 			}
 		);
+		callback(html);
 		return;
 	}
 }
