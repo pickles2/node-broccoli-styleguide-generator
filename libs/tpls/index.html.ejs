@@ -20,8 +20,20 @@
 
 <% for (var modId in modList) { %>
 <h4><%= modList[modId].moduleName %> (<%= modList[modId].moduleId %>)</h4>
-<% console.log(modList[modId]) %>
+<%# console.log(modList[modId]) %>
 
+<article>
+
+<%- modList[modId].readme %>
+
+<h5>Template</h5>
+<pre><code><%= modList[modId].template %></code></pre>
+<h5>Style</h5>
+<pre><code><%= modList[modId].css %></code></pre>
+<h5>Script</h5>
+<pre><code><%= modList[modId].js %></code></pre>
+
+</article>
 
 <% } %>
 
