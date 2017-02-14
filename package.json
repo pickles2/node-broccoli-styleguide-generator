@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "es6-promise": "^4.0.5",
+    "fs-extra": "^2.0.0",
     "iterate79": "^1.0.0",
     "utils79": "0.0.4"
   }
