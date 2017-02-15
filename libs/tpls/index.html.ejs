@@ -26,6 +26,10 @@
 
 <%- modList[modId].readme %>
 
+<% for (var codingExampleIdx in modList[modId].codingExample) { %>
+<iframe src="index_files/coding-example/<%= modList[modId].codingExample[codingExampleIdx] %>"></iframe>
+<% } %>
+
 <h5>Template</h5>
 <pre><code><%= modList[modId].template %></code></pre>
 <h5>Style</h5>

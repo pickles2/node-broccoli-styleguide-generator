@@ -1,0 +1,24 @@
+{
+ "bowl": {
+  "main": {
+   "modId": "_sys/root",
+   "fields": {
+    "main": [
+     {
+      "modId": "local:sample/sample",
+      "fields": {
+       "main": {
+        "src": "## preview\n\nContents Sample.",
+        "editor": "markdown"
+       }
+      },
+      "anchor": "",
+      "dec": ""
+     }
+    ]
+   },
+   "anchor": "",
+   "dec": ""
+  }
+ }
+}
