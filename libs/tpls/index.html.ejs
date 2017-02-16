@@ -27,7 +27,8 @@
 <%- modList[modId].readme %>
 
 <% for (var codingExampleIdx in modList[modId].codingExample) { %>
-<iframe src="index_files/coding-example/<%= modList[modId].codingExample[codingExampleIdx] %>"></iframe>
+<iframe src="index_files/coding-example/<%= modList[modId].codingExample[codingExampleIdx].path %>"></iframe>
+<pre><code><%= modList[modId].codingExample[codingExampleIdx].src %></code></pre>
 <% } %>
 
 <h5>Template</h5>

@@ -68,8 +68,11 @@ module.exports = function(broccoli, pathDistDir, callback){
 												var pathFrom = mod.realpath+'/coding-example/'+codingExampleHtmlList[idx];
 												var pathTo = require('path').resolve(pathDistDir, 'index_files/coding-example/'+pkg.packageId+'/'+category.categoryId+'/'+modId+'/'+codingExampleHtmlList[idx]);
 												if( utils79.is_file(pathFrom) ){
-													mod.codingExample.push( pkg.packageId+'/'+category.categoryId+'/'+modId+'/'+codingExampleHtmlList[idx] );
 													var html = fs.readFileSync(pathFrom);
+													mod.codingExample.push({
+														'path': pkg.packageId+'/'+category.categoryId+'/'+modId+'/'+codingExampleHtmlList[idx],
+														'src': html
+													});
 													var htmlFin = '';
 													htmlFin += '<!doctype html>'+"\n";
 													htmlFin += '<html>'+"\n";
