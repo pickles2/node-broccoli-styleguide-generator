@@ -59,6 +59,12 @@ module.exports = function(broccoli, pathDistDir, callback){
 											mod.js = require('fs').readFileSync(mod.realpath+'/module.js').toString();
 										}
 
+										// finalize.js
+										mod.finalizeJs = '';
+										if( utils79.is_file(mod.realpath+'/finalize.js') ){
+											mod.finalizeJs = require('fs').readFileSync(mod.realpath+'/finalize.js').toString();
+										}
+
 										// coding-example
 										mod.codingExample = [];
 										var codingExampleHtmlList = [];
