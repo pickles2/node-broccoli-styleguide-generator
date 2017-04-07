@@ -9,17 +9,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pickles2/node-broccoli-styleguide-generator.git"
+    "url": "git+https://github.com/broccoli-html-editor/node-broccoli-styleguide-generator.git"
   },
   "keywords": [
-    "pickles2"
+    "broccoli-html-editor"
   ],
   "author": "Tomoya Koyanagi",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/pickles2/node-broccoli-styleguide-generator/issues"
+    "url": "https://github.com/broccoli-html-editor/node-broccoli-styleguide-generator/issues"
   },
-  "homepage": "https://github.com/pickles2/node-broccoli-styleguide-generator#readme",
+  "homepage": "https://github.com/broccoli-html-editor/node-broccoli-styleguide-generator#readme",
   "devDependencies": {
     "broccoli-html-editor": "file:submodules/broccoli-html-editor",
     "gulp": "^3.9.1",
