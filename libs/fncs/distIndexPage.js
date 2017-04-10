@@ -91,6 +91,7 @@ module.exports = function(broccoli, pathDistDir, callback){
 													htmlFin += '<!doctype html>'+"\n";
 													htmlFin += '<html>'+"\n";
 													htmlFin += '<head>'+"\n";
+													htmlFin += '<meta charset="UTF-8" />'+"\n";
 													htmlFin += '<title>codine-example</title>'+"\n";
 													htmlFin += '<link rel="stylesheet" href="../../../../styles.css" />'+"\n";
 													htmlFin += '<script src="../../../../scripts.js"></script>'+"\n";
