@@ -9,9 +9,17 @@ module.exports = function(broccoli, pathDistDir, callback){
 	var _this = this;
 	var pkgList,
 		modList;
+	var pathContSample = require('path').resolve(pathDistDir, 'index_files/contents_sample.html');
 
 	it79.fnc({},
 		[
+			function(it1){
+				// contents_sample.html を一旦削除
+				try {
+					fs.unlinkSync(pathContSample);
+				} catch (e) {}
+				it1.next();
+			},
 			function(it1){
 				// broccoliモジュールパッケージの一覧を取得
 				broccoli.getPackageList(function(_pkgList){
@@ -83,6 +91,7 @@ module.exports = function(broccoli, pathDistDir, callback){
 													htmlFin += '<!doctype html>'+"\n";
 													htmlFin += '<html>'+"\n";
 													htmlFin += '<head>'+"\n";
+													htmlFin += '<meta charset="UTF-8" />'+"\n";
 													htmlFin += '<title>codine-example</title>'+"\n";
 													htmlFin += '<link rel="stylesheet" href="../../../../styles.css" />'+"\n";
 													htmlFin += '<script src="../../../../scripts.js"></script>'+"\n";
@@ -93,6 +102,7 @@ module.exports = function(broccoli, pathDistDir, callback){
 													htmlFin += '</html>'+"\n";
 													fsx.mkdirpSync(utils79.dirname(pathTo));
 													fs.writeFileSync(pathTo, htmlFin);
+													fs.appendFileSync(pathContSample, html+"\n");
 												}else if( utils79.is_dir(pathFrom) ){
 													fsx.copySync(
 														pathFrom,
