@@ -2,23 +2,91 @@
 <html>
 	<head>
 		<meta charset="UTF-8" />
-		<title>Style Guide</title>
+		<title>Style Guide sampleだよ</title>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js?ver=1.11.2"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js"></script>
 		<link rel="stylesheet" href="./index_files/resources/styleguide.css" />
 		<script src="./index_files/resources/styleguide.js"></script>
 		<link rel="stylesheet" href="./index_files/styles.css" />
 		<script src="./index_files/scripts.js"></script>
 	</head>
 	<body>
-		<header>
-		<h1>Style Guide</h1>
+		<header class="clearfix">
+		<div class="title">
+			<h1>Style Guide</h1>
+		</div>		
 		</header>
-		<div class="main-column">
+		<div class="main-column clearfix">
 
-<div class="module-index">
+<div class="module-content sidebar-content">
+<% for (var pkgId in pkgList) { %>
+<% catList = pkgList[pkgId].categories %>
+<span id="<%= pkgList[pkgId].packageId %>"></span>
+<h2><%= pkgList[pkgId].packageName %><small>(<%= pkgList[pkgId].packageId %>)</small></h2>
+
+<% for (var catId in catList) { %>
+<% modList = catList[catId].modules %>
+<span id="<%= pkgList[pkgId].packageId %>:<%= catList[catId].categoryId %>"></span>
+<h3><%= catList[catId].categoryName %><small>(<%= catList[catId].categoryId %>)</small></h3>
+
+<% for (var modId in modList) { %>
+<%# console.log(modList[modId]) %>
+<div class="h4_wrap">
+<div class="title_wrap">
+<span id="<%= modList[modId].moduleId %>"></span>
+<h4><%= modList[modId].moduleName %><small>(<%= modList[modId].moduleId %>)</small></h4>
+
+<%- modList[modId].readme %>
+
+</div>
+
+<% for (var codingExampleIdx in modList[modId].codingExample) { %>
+<div class="module-preview tabs">
+<label class="tab_item" for="preview">Preview</label>
+<div id="preview_content">
+<iframe src="index_files/coding-example/<%= modList[modId].codingExample[codingExampleIdx].path %>"></iframe>
+<pre><code><%= modList[modId].codingExample[codingExampleIdx].src %></code></pre>
+</div>
+</div>
+<% } %>
+
+<div class="module-src-codes">
+
+	<ul class="tabs">
+		<li id="tab1" class="tab_item active"><a href="#cont1_<%= pkgId %>_<%= catId %>_<%= modId %>">Template</a></li>
+		<li id="tab2" class="tab_item"><a href="#cont2_<%= pkgId %>_<%= catId %>_<%= modId %>">Style Sheet</a></li>
+		<li id="tab3" class="tab_item"><a href="#cont3_<%= pkgId %>_<%= catId %>_<%= modId %>">Java Script</a></li>
+		<li id="tab4" class="tab_item"><a href="#cont4_<%= pkgId %>_<%= catId %>_<%= modId %>">finalize.js</a></li>
+	</ul>
+
+	<ul class="panels">
+		<li id="cont1_<%= pkgId %>_<%= catId %>_<%= modId %>" class="panel active">
+			<pre><code><%= modList[modId].template %></code></pre>
+		</li>
+		<li id="cont2_<%= pkgId %>_<%= catId %>_<%= modId %>" class="panel">
+			<pre><code><%= modList[modId].css %></code></pre>
+		</li>
+		<li id="cont3_<%= pkgId %>_<%= catId %>_<%= modId %>" class="panel">
+			<pre><code><%= modList[modId].js %></code></pre>
+		</li>
+		<li id="cont4_<%= pkgId %>_<%= catId %>_<%= modId %>" class="panel">
+			<pre><code><%= modList[modId].finalizeJs %></code></pre>
+		</li>
+	</ul>
+
+</div>
+</div>
+<% } %>
+<% } %>
+<% } %>
+
+</div>
+
+<div class="module-index sidebar" style="width: 25%;">
 <ul>
 <% for (var pkgId in pkgList) { %>
 	<% catList = pkgList[pkgId].categories %>
-	<li><a href="#<%= pkgList[pkgId].packageId %>"><%= pkgList[pkgId].packageName %></a>
+	<li><a href="#<%= pkgList[pkgId].packageId %>" class="pkg-name"><%= pkgList[pkgId].packageName %></a>
 	<% if(Object.keys(catList).length){ %>
 		<ul>
 		<% for (var catId in catList) { %>
@@ -40,56 +108,10 @@
 	</li>
 <% } %>
 </ul>
+<div class="sidemenu_key button">→</div>
 </div>
 
-<% for (var pkgId in pkgList) { %>
-<% catList = pkgList[pkgId].categories %>
-<span id="<%= pkgList[pkgId].packageId %>"></span>
-<h2><%= pkgList[pkgId].packageName %><small>(<%= pkgList[pkgId].packageId %>)</small></h2>
 
-<% for (var catId in catList) { %>
-<% modList = catList[catId].modules %>
-<span id="<%= pkgList[pkgId].packageId %>:<%= catList[catId].categoryId %>"></span>
-<h3><%= catList[catId].categoryName %><small>(<%= catList[catId].categoryId %>)</small></h3>
-
-<% for (var modId in modList) { %>
-<%# console.log(modList[modId]) %>
-<span id="<%= modList[modId].moduleId %>"></span>
-<h4><%= modList[modId].moduleName %><small>(<%= modList[modId].moduleId %>)</small></h4>
-
-<article>
-
-<%- modList[modId].readme %>
-
-<% for (var codingExampleIdx in modList[modId].codingExample) { %>
-<iframe src="index_files/coding-example/<%= modList[modId].codingExample[codingExampleIdx].path %>"></iframe>
-<pre><code><%= modList[modId].codingExample[codingExampleIdx].src %></code></pre>
-<% } %>
-
-<div class="module-src-codes">
-	<div>
-		<h5>Template</h5>
-		<pre><code><%= modList[modId].template %></code></pre>
-	</div>
-	<div>
-		<h5>Style Sheet</h5>
-		<pre><code><%= modList[modId].css %></code></pre>
-	</div>
-	<div>
-		<h5>Java Script</h5>
-		<pre><code><%= modList[modId].js %></code></pre>
-	</div>
-	<div>
-		<h5>finalize.js</h5>
-		<pre><code><%= modList[modId].finalizeJs %></code></pre>
-	</div>
-</div>
-
-</article>
-
-<% } %>
-<% } %>
-<% } %>
 
 		<!-- /.main-column --></div>
 		<footer>
