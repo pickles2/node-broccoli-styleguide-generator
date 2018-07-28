@@ -89,6 +89,7 @@ header {
   float: left;
   text-align: center;
   font-weight: bold;
+  -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease; }
 
 .tab_item:hover {
