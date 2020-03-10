@@ -12,10 +12,16 @@ broccoli.init({
 	/* 中略 */
 }, function(){
 
-	var broccoliStyleGuideGen = new BroccoliStuleGuideGen(broccoli);
-	broccoliStyleGuideGen.generate('/path/to/dist/', {}, function(result){
-		console.log('done!');
+	var broccoliStyleGuideGen = new BroccoliStuleGuideGen({
+		"siteTitle": "Broccoli Sample"
 	});
+	broccoliStyleGuideGen.setBroccoli(broccoli);
+	broccoliStyleGuideGen.generate(
+		'/path/to/dist/',
+		function(result){
+			console.log('done!');
+		}
+	);
 
 });
 

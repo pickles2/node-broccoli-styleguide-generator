@@ -1,17 +1,32 @@
 /**
  * broccoli-styleguide-generator.js
  */
-module.exports = function(broccoli){
+module.exports = function(options){
+	var _this = this;
 	var fs = require('fs');
 	var it79 = require('iterate79');
 	var utils79 = require('utils79');
 	var Promise = require('es6-promise').Promise;
-	var _this = this;
+	var siteInfo = {};
+	var broccoli;
+
+	options = options || {};
+	if( options.siteTitle ){
+		siteInfo.title = options.siteTitle;
+	}
+
+	/**
+	 * broccoliオブジェクト(サーバーサイド)をセットする
+	 */
+	this.setBroccoli = function(b){
+		broccoli = b;
+		return true;
+	}
 
 	/**
 	 * Generate Style Guide
 	 */
-	this.generate = function(pathDistDir, options, callback){
+	this.generate = function(pathDistDir, callback){
 		callback = callback||function(){};
 		it79.fnc( {},
 			[
@@ -30,7 +45,7 @@ module.exports = function(broccoli){
 					// CSS と JavaScript をビルドして出力します。
 					var distResources = require('./fncs/distResources.js');
 					distResources(
-						broccoli,
+						_this,
 						pathDistDir,
 						function(result){
 							it1.next();
@@ -41,7 +56,7 @@ module.exports = function(broccoli){
 					// 扉ページを出力
 					var distIndexPage = require('./fncs/distIndexPage.js');
 					distIndexPage(
-						broccoli,
+						_this,
 						pathDistDir,
 						function(result){
 							it1.next();
@@ -57,5 +72,18 @@ module.exports = function(broccoli){
 		return;
 	}
 
+	/**
+	 * サイトの情報を取得する
+	 */
+	this.getSiteInfo = function(){
+		return siteInfo;
+	}
+
+	/**
+	 * broccoliオブジェクトを取得する
+	 */
+	this.broccoli = function(){
+		return broccoli;
+	}
 
 }

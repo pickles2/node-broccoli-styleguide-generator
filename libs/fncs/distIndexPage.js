@@ -1,7 +1,7 @@
 /**
  * distIndexPage.js
  */
-module.exports = function(broccoli, pathDistDir, callback){
+module.exports = function(main, pathDistDir, callback){
 	var utils79 = require('utils79');
 	var it79 = require('iterate79');
 	var fs = require('fs');
@@ -22,7 +22,7 @@ module.exports = function(broccoli, pathDistDir, callback){
 			},
 			function(it1){
 				// broccoliモジュールパッケージの一覧を取得
-				broccoli.getPackageList(function(_pkgList){
+				main.broccoli().getPackageList(function(_pkgList){
 					pkgList = _pkgList;
 					// console.log(_pkgList);
 					it1.next();
@@ -30,7 +30,7 @@ module.exports = function(broccoli, pathDistDir, callback){
 			},
 			function(it1){
 				// 全broccoliモジュールの一覧を取得
-				broccoli.getAllModuleList(function(_modList){
+				main.broccoli().getAllModuleList(function(_modList){
 					modList = _modList;
 					// console.log(_modList);
 					it1.next();
@@ -176,6 +176,7 @@ module.exports = function(broccoli, pathDistDir, callback){
 		html = bindEjs(
 			require('fs').readFileSync( __dirname+'/../tpls/index.html.ejs' ),
 			{
+				'siteInfo': main.getSiteInfo(),
 				'pkgList': pkgList,
 				'modList': modList
 			}

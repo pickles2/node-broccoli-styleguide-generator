@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8" />
-		<title>Style Guide</title>
+		<title><% if (siteInfo.title){ %><%= siteInfo.title %> <% } %>Style Guide</title>
 		<script src="./index_files/resources/jquery.js"></script>
 		<script src="./index_files/resources/jquery-ui.min.js"></script>
 		<link rel="stylesheet" href="./index_files/resources/styleguide.css" />
@@ -13,7 +13,7 @@
 	<body>
 		<header class="clearfix">
 		<div class="title">
-			<h1>Style Guide</h1>
+			<h1><% if (siteInfo.title){ %><%= siteInfo.title %> <% } %>Style Guide</h1>
 		</div>		
 		</header>
 		<div class="main-column clearfix">
