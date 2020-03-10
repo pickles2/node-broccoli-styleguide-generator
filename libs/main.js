@@ -43,8 +43,19 @@ module.exports = function(options){
 				function(it1){
 					// リソースを出力
 					// CSS と JavaScript をビルドして出力します。
-					var distResources = require('./fncs/distResources.js');
-					distResources(
+					var fnc = require('./fncs/distResources.js');
+					fnc(
+						_this,
+						pathDistDir,
+						function(result){
+							it1.next();
+						}
+					);
+				} ,
+				function(it1){
+					// モジュール一覧ページを出力
+					var fnc = require('./fncs/distModuleListPage.js');
+					fnc(
 						_this,
 						pathDistDir,
 						function(result){
@@ -54,8 +65,8 @@ module.exports = function(options){
 				} ,
 				function(it1){
 					// 扉ページを出力
-					var distIndexPage = require('./fncs/distIndexPage.js');
-					distIndexPage(
+					var fnc = require('./fncs/distIndexPage.js');
+					fnc(
 						_this,
 						pathDistDir,
 						function(result){

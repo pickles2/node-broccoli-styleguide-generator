@@ -2,7 +2,7 @@ $(function() {
     var duration = 300;
     var $sidebar = $('.sidebar');
     var $button = $('.button');
-    var $content = $('.sidebar-content');
+    var $content = $('.module-content');
     var $sidemenu_key = $('.sidemenu_key');
 
     $button.addClass('open');
