@@ -13,9 +13,12 @@ broccoli.init({
 }, function(){
 
 	var broccoliStyleGuideGen = new BroccoliStuleGuideGen({
-		"siteTitle": "Broccoli Sample"
+		"siteTitle": "Broccoli Sample",
+		"gpiBridge": function(api, options, callback){
+			// Brccoli の GPI への接続方法を実装してください。
+			broccooli.gpi(api, options, callback);
+		}
 	});
-	broccoliStyleGuideGen.setBroccoli(broccoli);
 	broccoliStyleGuideGen.generate(
 		'/path/to/dist/',
 		function(result){
