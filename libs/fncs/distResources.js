@@ -10,15 +10,13 @@ module.exports = function(main, pathDistDir, callback){
 		[
 			function(it1){
 				// create index_files
-				main.broccoli().buildModuleCss(function(css){
-					fsx.mkdirp( require('path').resolve(pathDistDir, 'index_files/'), {}, function(){
-						it1.next();
-					})
-				});
+				fsx.mkdirp( require('path').resolve(pathDistDir, 'index_files/'), {}, function(){
+					it1.next();
+				})
 			},
 			function(it1){
 				// build CSS
-				main.broccoli().buildModuleCss(function(css){
+				main.broccoliGpi('buildModuleCss', {}, function(css){
 					fs.writeFile( require('path').resolve(pathDistDir, 'index_files/styles.css'), css, {}, function(){
 						it1.next();
 					})
@@ -26,7 +24,7 @@ module.exports = function(main, pathDistDir, callback){
 			},
 			function(it1){
 				// build JavaScript
-				main.broccoli().buildModuleJs(function(js){
+				main.broccoliGpi('buildModuleJs', {}, function(js){
 					fs.writeFile( require('path').resolve(pathDistDir, 'index_files/scripts.js'), js, {}, function(){
 						it1.next();
 					})

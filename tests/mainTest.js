@@ -37,9 +37,12 @@ describe('Build StyleGuild', function() {
 		this.timeout(10*1000);
 		createBroccoli(function(broccoli){
 			var broccoliStyleGuideGen = new BroccoliStuleGuideGen({
-				"siteTitle": "Broccoli Sample"
+				"siteTitle": "Broccoli Sample",
+				"gpiBridge": function(api, options, callback){
+					broccoli.gpi(api, options, callback);
+					return;
+				}
 			});
-			broccoliStyleGuideGen.setBroccoli(broccoli);
 			broccoliStyleGuideGen.generate(__dirname+'/dist/', function(result){
 				assert.ok( utils79.is_file( __dirname+'/dist/index_files/scripts.js' ) );
 				assert.ok( utils79.is_file( __dirname+'/dist/index_files/styles.css' ) );

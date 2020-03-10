@@ -8,21 +8,16 @@ module.exports = function(options){
 	var utils79 = require('utils79');
 	var Promise = require('es6-promise').Promise;
 	var siteInfo = {};
-	var broccoli;
-	var pkgList;
-	var modList;
+	var pkgList,
+		modList;
 
 	options = options || {};
+	options.gpiBridge = options.gpiBridge || function(api, options, callback){
+		console.error('gpiBridge() not set.');
+		callback(false);
+	};
 	if( options.siteTitle ){
 		siteInfo.title = options.siteTitle;
-	}
-
-	/**
-	 * broccoliオブジェクト(サーバーサイド)をセットする
-	 */
-	this.setBroccoli = function(b){
-		broccoli = b;
-		return true;
 	}
 
 	/**
@@ -44,19 +39,23 @@ module.exports = function(options){
 				} ,
 				function(it1){
 					// broccoliモジュールパッケージの一覧を取得
-					broccoli.getPackageList(function(_pkgList){
-						pkgList = _pkgList;
-						// console.log(_pkgList);
+					_this.broccoliGpi('getModulePackageList', {}, function(result){
+						// console.log(result);
+						pkgList = result;
 						it1.next();
+						return;
 					});
+					return;
 				},
 				function(it1){
 					// 全broccoliモジュールの一覧を取得
-					broccoli.getAllModuleList(function(_modList){
-						modList = _modList;
-						// console.log(_modList);
+					_this.broccoliGpi('getAllModuleList', {}, function(result){
+						// console.log(result);
+						modList = result;
 						it1.next();
+						return;
 					});
+					return;
 				},
 				function(it1){
 					// リソースを出力
@@ -109,10 +108,11 @@ module.exports = function(options){
 	}
 
 	/**
-	 * broccoliオブジェクトを取得する
+	 * broccoli の GPI をコールする
 	 */
-	this.broccoli = function(){
-		return broccoli;
+	this.broccoliGpi = function(api, opts, callback){
+		options.gpiBridge(api, opts, callback);
+		return;
 	}
 
 	this.getPackageList = function(){
