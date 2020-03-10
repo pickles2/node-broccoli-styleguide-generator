@@ -4,7 +4,6 @@
   "description": "Generate a styleguide consist of \"broccoli-html-editor\" modules.",
   "main": "libs/main.js",
   "scripts": {
-    "submodules-update": "rm -rfv node_modules/px2style; npm install; gulp;",
     "test": "gulp; mocha --ui tdd ./tests/"
   },
   "repository": {
@@ -21,7 +20,7 @@
   },
   "homepage": "https://github.com/broccoli-html-editor/node-broccoli-styleguide-generator#readme",
   "devDependencies": {
-    "broccoli-html-editor": "git://github.com/broccoli-html-editor/broccoli-html-editor.git",
+    "broccoli-html-editor": "^0.3.14",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.1",
     "gulp-browserify": "^0.5.1",
@@ -31,7 +30,7 @@
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^3.1.0",
     "gulp-uglify": "^2.0.1",
-    "jquery": "^3.1.1",
+    "jquery": "^3.4.1",
     "mocha": "^3.2.0"
   },
   "dependencies": {

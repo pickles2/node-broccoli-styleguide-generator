@@ -1,7 +1,7 @@
 # node-broccoli-styleguide-generator
 Generate a styleguide consist of "broccoli-html-editor" modules.
 
-## Usage
+## 使い方 - Usage
 
 ```js
 var Broccoli = require('broccoli-html-editor');
@@ -29,5 +29,5 @@ MIT License
 ## 作者 - Author
 
 - Tomoya Koyanagi <tomk79@gmail.com>
-- website: <http://www.pxt.jp/>
-- Twitter: @tomk79 <http://twitter.com/tomk79/>
+- website: <https://www.pxt.jp/>
+- Twitter: @tomk79 <https://twitter.com/tomk79/>

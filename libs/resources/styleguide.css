@@ -89,7 +89,6 @@ header {
   float: left;
   text-align: center;
   font-weight: bold;
-  -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease; }
 
 .tab_item:hover {
@@ -240,13 +239,11 @@ iframe {
 
 .module-src-codes {
   border-radius: 0 0 5px 5px;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between; }
+  -ms-flex-pack: justify;
+      justify-content: space-between; }
   .module-src-codes > div {
-    -webkit-box-flex: 1;
-        -ms-flex-positive: 1;
-            flex-grow: 1; }
+    -ms-flex-positive: 1;
+        flex-grow: 1; }
     .module-src-codes > div > pre > code {
       height: 140px;
       overflow: auto; }
