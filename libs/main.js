@@ -9,6 +9,8 @@ module.exports = function(options){
 	var Promise = require('es6-promise').Promise;
 	var siteInfo = {};
 	var broccoli;
+	var pkgList;
+	var modList;
 
 	options = options || {};
 	if( options.siteTitle ){
@@ -40,6 +42,22 @@ module.exports = function(options){
 					}
 					it1.next();
 				} ,
+				function(it1){
+					// broccoliモジュールパッケージの一覧を取得
+					broccoli.getPackageList(function(_pkgList){
+						pkgList = _pkgList;
+						// console.log(_pkgList);
+						it1.next();
+					});
+				},
+				function(it1){
+					// 全broccoliモジュールの一覧を取得
+					broccoli.getAllModuleList(function(_modList){
+						modList = _modList;
+						// console.log(_modList);
+						it1.next();
+					});
+				},
 				function(it1){
 					// リソースを出力
 					// CSS と JavaScript をビルドして出力します。
@@ -95,6 +113,13 @@ module.exports = function(options){
 	 */
 	this.broccoli = function(){
 		return broccoli;
+	}
+
+	this.getPackageList = function(){
+		return pkgList;
+	}
+	this.getAllModuleList = function(){
+		return modList;
 	}
 
 }

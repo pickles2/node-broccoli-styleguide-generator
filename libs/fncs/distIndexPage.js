@@ -2,13 +2,13 @@
  * distIndexPage.js
  */
 module.exports = function(main, pathDistDir, callback){
+	var _this = this;
 	var utils79 = require('utils79');
 	var it79 = require('iterate79');
 	var fs = require('fs');
 	var fsx = require('fs-extra');
-	var _this = this;
-	var pkgList,
-		modList;
+	var pkgList = main.getPackageList();
+	var modList = main.getAllModuleList();
 	var pathContSample = require('path').resolve(pathDistDir, 'index_files/contents_sample.html');
 
 	it79.fnc({},
@@ -19,22 +19,6 @@ module.exports = function(main, pathDistDir, callback){
 					fs.unlinkSync(pathContSample);
 				} catch (e) {}
 				it1.next();
-			},
-			function(it1){
-				// broccoliモジュールパッケージの一覧を取得
-				main.broccoli().getPackageList(function(_pkgList){
-					pkgList = _pkgList;
-					// console.log(_pkgList);
-					it1.next();
-				});
-			},
-			function(it1){
-				// 全broccoliモジュールの一覧を取得
-				main.broccoli().getAllModuleList(function(_modList){
-					modList = _modList;
-					// console.log(_modList);
-					it1.next();
-				});
 			},
 			function(it1){
 				// モジュールのその他の情報を取得
