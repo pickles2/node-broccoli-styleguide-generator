@@ -9,9 +9,20 @@ var rename = require("gulp-rename");//ファイル名の置き換えを行う
 var browserify = require("gulp-browserify");//NodeJSのコードをブラウザ向けコードに変換
 var packageJson = require(__dirname+'/package.json');
 var _tasks = [
+	'client-libs',
 	'.css.scss',
 	'.js'
 ];
+
+// client-libs (frontend) を処理
+gulp.task("client-libs", function() {
+	gulp.src(["node_modules/bootstrap/dist/**/*"])
+		.pipe(gulp.dest( './libs/resources/bootstrap/' ))
+	;
+	gulp.src(["node_modules/px2style/dist/**/*"])
+		.pipe(gulp.dest( './libs/resources/px2style/' ))
+	;
+});
 
 // src 中の *.css.scss を処理
 gulp.task('.css.scss', function(){

@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/broccoli-html-editor/node-broccoli-styleguide-generator#readme",
   "devDependencies": {
+    "bootstrap": "^4.4.1",
     "broccoli-html-editor": "^0.3.14",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.1",
@@ -31,7 +32,8 @@
     "gulp-sass": "^3.1.0",
     "gulp-uglify": "^2.0.1",
     "jquery": "^3.4.1",
-    "mocha": "^3.2.0"
+    "mocha": "^3.2.0",
+    "px2style": "^2.0.7"
   },
   "dependencies": {
     "ejs": "^2.5.5",
