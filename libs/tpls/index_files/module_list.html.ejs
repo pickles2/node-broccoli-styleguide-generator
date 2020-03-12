@@ -5,6 +5,10 @@
 		<title>Module List - <% if (siteInfo.title){ %><%= siteInfo.title %> <% } %>Style Guide</title>
 		<script src="./resources/jquery.js"></script>
 		<script src="./resources/jquery-ui.min.js"></script>
+		<link rel="stylesheet" href="./resources/bootstrap/css/bootstrap.css" />
+		<script src="./resources/bootstrap/js/bootstrap.js"></script>
+		<link rel="stylesheet" href="./resources/px2style/styles.css" />
+		<script src="./resources/px2style/scripts.js"></script>
 		<link rel="stylesheet" href="./resources/styleguide.css" />
 		<script src="./resources/styleguide.js"></script>
 	</head>
@@ -17,6 +21,50 @@
 		<div class="main-column clearfix">
 			<div class="module-content">
 			<h1>Module List</h1>
+
+<% for (var pkgId in pkgList) { %>
+<% catList = pkgList[pkgId].categories %>
+<span id="<%= pkgList[pkgId].packageId %>"></span>
+<h2><%= pkgList[pkgId].packageName %><small>(<%= pkgList[pkgId].packageId %>)</small></h2>
+
+<% for (var catId in catList) { %>
+<% modList = catList[catId].modules %>
+<span id="<%= pkgList[pkgId].packageId %>:<%= catList[catId].categoryId %>"></span>
+<h3><%= catList[catId].categoryName %><small>(<%= catList[catId].categoryId %>)</small></h3>
+
+<table class="px2-table">
+	<thead>
+		<tr>
+			<th>thumb</th>
+			<th>Module Name</th>
+			<th>ID</th>
+			<th>README</th>
+			<th>deprecated</th>
+			<th>clip</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+<% for (var modId in modList) { %>
+<%# console.log(modList[modId]) %>
+		<tr>
+			<td><% if(modList[modId].thumb){ %><img src="<%= modList[modId].thumb %>" alt="" class="thumb" /><% }else{ %>---<% } %></td>
+			<td><%= modList[modId].moduleName %></td>
+			<td><%= modList[modId].moduleId %></td>
+			<td><%- modList[modId].readme %></td>
+			<td><%= (modList[modId].deprecated ? 'Y' : 'n') %></td>
+			<td><%= (modList[modId].clip ? 'Y' : 'n') %></td>
+			<td></td>
+		</tr>
+<% } %>
+	</tbody>
+</table>
+
+<% } %>
+<% } %>
+
+
+
 			</div>
 		<!-- /.main-column --></div>
 		<footer>

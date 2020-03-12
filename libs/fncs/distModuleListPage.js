@@ -73,8 +73,8 @@ module.exports = function(main, pathDistDir, callback){
 				);
 			},
 			function(it1){
-				// build index.html
-				mkIndexHtml(function(html){
+				// build module_list.html
+				mkModuleListHtml(function(html){
 					fs.writeFile( require('path').resolve(pathDistDir, 'index_files/module_list.html'), html, {}, function(){
 						it1.next();
 					})
@@ -107,7 +107,7 @@ module.exports = function(main, pathDistDir, callback){
 	/**
 	 * index.html のHTMLソースを作成する
 	 */
-	function mkIndexHtml(callback){
+	function mkModuleListHtml(callback){
 		var html = '';
 		html = bindEjs(
 			require('fs').readFileSync( __dirname+'/../tpls/index_files/module_list.html.ejs' ),
