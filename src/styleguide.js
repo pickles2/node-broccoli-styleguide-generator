@@ -1,50 +1,49 @@
 $(function() {
-    var duration = 300;
-    var $sidebar = $('.sidebar');
-    var $button = $('.button');
-    var $content = $('.module-content');
-    var $sidemenu_key = $('.sidemenu_key');
+	var duration = 300;
+	var $sidebar = $('.theme-sidebar');
+	var $content = $('.module-content');
+	var $sidebarToggleBtn = $('.theme-sidebar__toggle-btn');
 
-    $button.addClass('open');
-    $button.click(function() {
-        $button.toggleClass('close');
-        $button.removeClass('open');
-        if ($button.hasClass('close')) {
-            $button.addClass('open');
-            
-            $sidemenu_key.text('←');
+	$sidebarToggleBtn.addClass('theme-sidebar__toggle-btn-open');
+	$sidebarToggleBtn.click(function() {
+		$sidebarToggleBtn.toggleClass('theme-sidebar__toggle-btn-close');
+		$sidebarToggleBtn.removeClass('theme-sidebar__toggle-btn-open');
+		if ($sidebarToggleBtn.hasClass('theme-sidebar__toggle-btn-close')) {
+			$sidebarToggleBtn.addClass('theme-sidebar__toggle-btn-open');
 
-            $sidebar.css({
-                'right':'-390px',
-                'width':''
-            });
-            
-            $content.stop().animate({
-                width: '100%'
-            }, duration, 'easeOutQuint');
-        } else {
-        	$sidemenu_key.text('→');
+			$sidebarToggleBtn.text('←');
 
-            $sidebar.css({
-                'right': '0',
-                'width': '25%'
-            });
-            
-            $content.stop().animate({
-                width: '75%'
-            }, duration, 'easeOutQuint');
-        };
-    });
+			$sidebar.css({
+				'right': 0,
+				'width': 0
+			});
 
-    var $tabs = $(".tabs a");
+			$content.stop().animate({
+				width: '100%'
+			}, duration, 'easeOutQuint');
+		} else {
+			$sidebarToggleBtn.text('→');
 
-    $tabs.on('click', function(e) {
-        e.preventDefault();
-        var target = $(this).attr('href');
-        if (! $(target).length) return false;
-        $('.tab_item', $(this).closest('.tabs')).removeClass('active');
-        $(this).closest('.tab_item').addClass('active');
-        $('.panel', $(target).closest('.panels')).removeClass('active');
-        $(target).addClass('active');
-    });
+			$sidebar.css({
+				'right': 0,
+				'width': '25%'
+			});
+
+			$content.stop().animate({
+				width: '75%'
+			}, duration, 'easeOutQuint');
+		};
+	});
+
+	var $tabs = $(".tabs a");
+
+	$tabs.on('click', function(e) {
+		e.preventDefault();
+		var target = $(this).attr('href');
+		if (! $(target).length) return false;
+		$('.tab_item', $(this).closest('.tabs')).removeClass('active');
+		$(this).closest('.tab_item').addClass('active');
+		$('.panel', $(target).closest('.panels')).removeClass('active');
+		$(target).addClass('active');
+	});
 });

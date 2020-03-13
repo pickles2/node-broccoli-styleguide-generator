@@ -13,28 +13,24 @@
 		<script src="./resources/styleguide.js"></script>
 	</head>
 	<body>
-		<header class="clearfix">
-		<div class="title">
-			<p><a href="../index.html"><% if (siteInfo.title){ %><%= siteInfo.title %> <% } %>Style Guide</a></p>
-		</div>		
+		<header>
+			<div class="theme-title">
+				<p><a href="../index.html"><% if (siteInfo.title){ %><%= siteInfo.title %> <% } %>Style Guide</a></p>
+			</div>
 		</header>
-		<div class="main-column clearfix">
-			<div class="module-content">
+		<div class="theme-main">
 			<h1>Module List</h1>
+			<div class="contents">
 
 <% for (var pkgId in pkgList) { %>
 <% catList = pkgList[pkgId].categories %>
-<span id="<%= pkgList[pkgId].packageId %>"></span>
 <h2><%= pkgList[pkgId].packageName %><small>(<%= pkgList[pkgId].packageId %>)</small></h2>
 
-<% for (var catId in catList) { %>
-<% modList = catList[catId].modules %>
-<span id="<%= pkgList[pkgId].packageId %>:<%= catList[catId].categoryId %>"></span>
-<h3><%= catList[catId].categoryName %><small>(<%= catList[catId].categoryId %>)</small></h3>
-
+<div class="module-list">
 <table class="px2-table">
 	<thead>
 		<tr>
+			<th>Category Name</th>
 			<th>thumb</th>
 			<th>Module Name</th>
 			<th>ID</th>
@@ -45,10 +41,14 @@
 		</tr>
 	</thead>
 	<tbody>
+<% for (var catId in catList) { %>
+<% modList = catList[catId].modules %>
+
 <% for (var modId in modList) { %>
 <%# console.log(modList[modId]) %>
 		<tr>
-			<td><% if(modList[modId].thumb){ %><img src="<%= modList[modId].thumb %>" alt="" class="thumb" /><% }else{ %>---<% } %></td>
+			<th><%= catList[catId].categoryName %></th>
+			<td><% if(modList[modId].thumb){ %><img src="<%= modList[modId].thumb %>" alt="" class="module-list__thumb" /><% }else{ %>---<% } %></td>
 			<td><%= modList[modId].moduleName %></td>
 			<td><%= modList[modId].moduleId %></td>
 			<td><%- modList[modId].readme %></td>
@@ -57,13 +57,12 @@
 			<td></td>
 		</tr>
 <% } %>
+<% } %>
 	</tbody>
 </table>
+</div>
 
 <% } %>
-<% } %>
-
-
 
 			</div>
 		<!-- /.main-column --></div>
