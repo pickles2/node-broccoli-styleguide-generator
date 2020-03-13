@@ -19,13 +19,13 @@ h2{
     color: #fff;
 }
 h3{
-    margin: 2em 0 0.5em 0;
+    margin: 1em 0 0.5em 0;
     padding: 10px 20px;
     background-color: #ddd;
     color: #000;
 }
 h4{
-    margin: 2em 0 0.5em 0;
+    margin: 1em 0 0.5em 0;
     padding: 10px 20px;
     background-color: #fff;
     color: #000;
@@ -84,6 +84,7 @@ header{
     width: calc(100% - 40px);
     margin: 0 auto;
 }
+
 .module-content {
     width: 75%;
     padding: 0 10px;
@@ -119,6 +120,30 @@ header{
         &>li.panel.active {
             display: block;
         }
+    }
+    &__module-thumb{
+        width: 2em;
+        height: 2em;
+        margin-right: 0.6em;
+        vertical-align: middle;
+    }
+
+    &__h4-wrap {
+        border: 1px solid #aaa;
+        border-radius: 5px;
+        width: 98%;
+        margin: 20px auto;
+
+        h4 {
+            border: none;
+            margin: 1em 0 0.5em 0;
+            padding: 0;
+        }
+    }
+
+    &__title-wrap {
+        border-bottom: 1px solid #aaa;
+        padding: 0 1em 1em 1em;
     }
 }
 .tabs {
@@ -172,21 +197,6 @@ input[name="tab_item"] {
     background-color: #000;
     color: #fff;
 }
-.h4_wrap {
-    border: 1px solid #aaa;
-    border-radius: 5px;
-    width: 98%;
-    margin: 20px auto;
-}
-.h4_wrap h4 {
-    border: none;
-    margin: 1em 0 0.5em 0;
-}
-
-.title_wrap {
-    border-bottom: 1px solid #aaa;
-    padding: 0 1em 1em 1em;
-}
 
 .pkg-name {
     font-size: 16px;
@@ -208,6 +218,31 @@ input[name="tab_item"] {
     &__thumb{
         width: 40px;
         height: 40px;
+    }
+    &__cell-readme{
+        padding: 0 !important;
+        & > article{
+            overflow: auto;
+            max-height: 140px;
+            padding: 10px;
+            font-size: 8px;
+        }
+    }
+    &__cell-pics{
+        ul{
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-wrap: nowrap;
+            li{
+                list-style-type: none;
+                margin: 0 5px 0 0;
+                padding: 0;
+                img{
+                    height: 4em;
+                }
+            }
+        }
     }
 }
 
@@ -286,4 +321,5 @@ input[name="tab_item"] {
 footer{
     background-color: #f5f5f5;
     padding: 10px 20px;
+    margin: 3em 0 0 0;
 }

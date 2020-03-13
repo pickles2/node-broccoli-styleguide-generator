@@ -15,8 +15,18 @@ module.exports = function(main, pathDistDir, callback){
 				})
 			},
 			function(it1){
+				// copy styleguide resources
+				fsx.copy(
+					__dirname+'/../resources/',
+					require('path').resolve(pathDistDir, 'index_files/resources/'),
+					function(){
+						it1.next();
+					}
+				);
+			},
+			function(it1){
 				// build CSS
-				main.broccoliGpi('buildModuleCss', {}, function(css){
+				main.broccoliGpi('buildModuleCss', {}, function(css, b, c){
 					fs.writeFile( require('path').resolve(pathDistDir, 'index_files/styles.css'), css, {}, function(){
 						it1.next();
 					})
@@ -29,16 +39,6 @@ module.exports = function(main, pathDistDir, callback){
 						it1.next();
 					})
 				});
-			},
-			function(it1){
-				// copy styleguide resources
-				fsx.copy(
-					__dirname+'/../resources/',
-					require('path').resolve(pathDistDir, 'index_files/resources/'),
-					function(){
-						it1.next();
-					}
-				);
 			},
 			function(it1){
 				callback(true);

@@ -27,6 +27,7 @@
 <h2><%= pkgList[pkgId].packageName %><small>(<%= pkgList[pkgId].packageId %>)</small></h2>
 
 <div class="module-list">
+	<div class="px2-responsive">
 <table class="px2-table">
 	<thead>
 		<tr>
@@ -37,7 +38,7 @@
 			<th>README</th>
 			<th>deprecated</th>
 			<th>clip</th>
-			<th></th>
+			<th>pics</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -51,15 +52,22 @@
 			<td><% if(modList[modId].thumb){ %><img src="<%= modList[modId].thumb %>" alt="" class="module-list__thumb" /><% }else{ %>---<% } %></td>
 			<td><%= modList[modId].moduleName %></td>
 			<td><%= modList[modId].moduleId %></td>
-			<td><%- modList[modId].readme %></td>
+			<td class="module-list__cell-readme"><article><%- modList[modId].readme %></article></td>
 			<td><%= (modList[modId].deprecated ? 'Y' : 'n') %></td>
 			<td><%= (modList[modId].clip ? 'Y' : 'n') %></td>
-			<td></td>
+			<td class="module-list__cell-pics"><% if(modList[modId].pics && modList[modId].pics.length){ %>
+				<ul>
+				<% for(var picsIdx in modList[modId].pics){ %>
+					<li><a href="<%= modList[modId].pics[picsIdx] %>" target="_blank"><img src="<%= modList[modId].pics[picsIdx] %>" alt="" /></a></li>
+				<% } %>
+				</ul>
+			<% }else{ %>---<% } %></td>
 		</tr>
 <% } %>
 <% } %>
 	</tbody>
 </table>
+	</div>
 </div>
 
 <% } %>

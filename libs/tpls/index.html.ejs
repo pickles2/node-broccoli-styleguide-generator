@@ -34,10 +34,10 @@
 
 <% for (var modId in modList) { %>
 <%# console.log(modList[modId]) %>
-<div class="h4_wrap">
-<div class="title_wrap">
+<div class="module-content__h4-wrap">
+<div class="module-content__title-wrap">
 <span id="<%= modList[modId].moduleId %>"></span>
-<h4><%= modList[modId].moduleName %><small>(<%= modList[modId].moduleId %>)</small></h4>
+<h4><% if(modList[modId].thumb){ %><img src="<%= modList[modId].thumb %>" alt="" class="module-content__module-thumb" /><% } %><%= modList[modId].moduleName %><small>(<%= modList[modId].moduleId %>)</small></h4>
 
 <%- modList[modId].readme %>
 
