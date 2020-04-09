@@ -272,6 +272,16 @@ input[name="tab_item"] {
     .module-src-codes > div pre {
       margin-top: 0; }
 
+.theme-counter {
+  border: 1px solid #aaa;
+  background-color: #f5f5f5;
+  margin: 4em 10% 3em;
+  padding: 1em; }
+  .theme-counter__heading {
+    font-weight: bold; }
+  .theme-counter p, .theme-counter ul, .theme-counter li {
+    margin: 0; }
+
 footer {
   background-color: #f5f5f5;
   padding: 10px 20px;

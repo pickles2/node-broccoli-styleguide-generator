@@ -10,21 +10,37 @@ module.exports = function(main, pathDistDir, callback){
 	var pkgList = main.getPackageList();
 	var modList = main.getAllModuleList();
 
+	var counter = {
+		'count': 0,
+		'packages': {}
+	};
+
 	it79.fnc({},
 		[
 			function(it1){
 				// モジュールのその他の情報を取得
 				it79.ary(
 					pkgList,
-					function(it2, pkg){
+					function(it2, pkg, pkgId){
+						counter.packages[pkgId] = {
+							'count': 0,
+							'categories': {}
+						};
 						it79.ary(
 							pkg.categories,
-							function(it3, category){
+							function(it3, category, categoryId){
+								counter.packages[pkgId].categories[categoryId] = {
+									'count': 0
+								};
 								it79.ary(
 									category.modules,
 									function(it4, mod, modId){
 										// console.log(mod);
 										// console.log(modList[mod.moduleId]);
+
+										counter.count ++;
+										counter.packages[pkgId].count ++;
+										counter.packages[pkgId].categories[categoryId].count ++;
 
 										// template
 										mod.template = modList[mod.moduleId].template;
@@ -114,7 +130,8 @@ module.exports = function(main, pathDistDir, callback){
 			{
 				'siteInfo': main.getSiteInfo(),
 				'pkgList': pkgList,
-				'modList': modList
+				'modList': modList,
+				'counter': counter
 			}
 		);
 		callback(html);
