@@ -32,13 +32,17 @@ module.exports = function(main, pathDistDir, callback){
 					function(it2, pkg, pkgId){
 						counter.packages[pkgId] = {
 							'count': 0,
+							'id': pkgId,
+							'name': pkg.packageName,
 							'categories': {}
 						};
 						it79.ary(
 							pkg.categories,
 							function(it3, category, categoryId){
 								counter.packages[pkgId].categories[categoryId] = {
-									'count': 0
+									'count': 0,
+									'id': categoryId,
+									'name': category.categoryName
 								};
 								it79.ary(
 									category.modules,

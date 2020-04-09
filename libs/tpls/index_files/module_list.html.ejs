@@ -76,10 +76,10 @@
 		<p><span class="theme-counter__heading">Total:</span> <%= counter.count %></p>
 		<ul>
 		<% for (var pkgId in counter.packages) { %>
-			<li><span class="theme-counter__heading"><%= pkgId %>:</span> <%= counter.packages[pkgId].count %>
+			<li><span class="theme-counter__heading"><%= counter.packages[pkgId].name %> (<%= counter.packages[pkgId].id %>):</span> <%= counter.packages[pkgId].count %>
 				<ul>
 				<% for (var categoryId in counter.packages[pkgId].categories) { %>
-					<li><span class="theme-counter__heading"><%= pkgId %>:<%= categoryId %>:</span> <%= counter.packages[pkgId].categories[categoryId].count %>
+					<li><span class="theme-counter__heading"><%= counter.packages[pkgId].categories[categoryId].name %> (<%= counter.packages[pkgId].id %>:<%= counter.packages[pkgId].categories[categoryId].id %>):</span> <%= counter.packages[pkgId].categories[categoryId].count %>
 					</li>
 				<% } %>
 				</ul>
