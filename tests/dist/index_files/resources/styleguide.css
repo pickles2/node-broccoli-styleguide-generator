@@ -42,6 +42,38 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
   margin-left: 10px;
   font-size: 76%; }
 
+.module-readme h1 {
+  font-size: 100%;
+  margin: 1em 0; }
+
+.module-readme h2 {
+  font-size: 120%;
+  margin: 2em 0 0.5em 0;
+  padding: 10px 0px;
+  border-bottom: 1px solid #000;
+  background-color: transparent;
+  color: #000; }
+
+.module-readme h3 {
+  font-size: 110%;
+  margin: 1em 0 0.5em 0;
+  padding: 10px 0px;
+  border-bottom: 1px solid #999;
+  background-color: transparent;
+  color: #000; }
+
+.module-readme h4 {
+  font-size: 100%;
+  margin: 1em 0 0.5em 0;
+  padding: 10px 20px;
+  background-color: #fff;
+  color: #000;
+  border-bottom: 1px solid #ddd; }
+
+.module-readme h5, .module-readme h6 {
+  font-size: 100%;
+  margin: 1em 0 0.5em 0; }
+
 ul {
   -webkit-padding-start: 1em; }
 
