@@ -102,12 +102,15 @@ module.exports = function(main, pathDistDir, callback){
 													htmlFin += '<html>'+"\n";
 													htmlFin += '<head>'+"\n";
 													htmlFin += '<meta charset="UTF-8" />'+"\n";
-													htmlFin += '<title>codine-example</title>'+"\n";
+													htmlFin += '<title>coding-example</title>'+"\n";
 													htmlFin += '<link rel="stylesheet" href="../../../../styles.css" />'+"\n";
 													htmlFin += '<script src="../../../../scripts.js"></script>'+"\n";
+													htmlFin += '<script src="../../../../resources/codingExample.js"></script>'+"\n";
 													htmlFin += '</head>'+"\n";
 													htmlFin += '<body>'+"\n";
+													htmlFin += '<div class="broccoli-styleguide-bodyinner">'+"\n";
 													htmlFin += html+"\n";
+													htmlFin += '</div>'+"\n";
 													htmlFin += '</body>'+"\n";
 													htmlFin += '</html>'+"\n";
 													fsx.mkdirpSync(utils79.dirname(pathTo));
