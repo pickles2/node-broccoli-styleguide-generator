@@ -1,32 +1,29 @@
-var gulp = require('gulp');
-var sass = require('gulp-sass');//CSSコンパイラ
-var autoprefixer = require("gulp-autoprefixer");//CSSにベンダープレフィックスを付与してくれる
-var minifyCss = require('gulp-minify-css');//CSSファイルの圧縮ツール
-var uglify = require("gulp-uglify");//JavaScriptファイルの圧縮ツール
-var concat = require('gulp-concat');//ファイルの結合ツール
-var plumber = require("gulp-plumber");//コンパイルエラーが起きても watch を抜けないようになる
-var rename = require("gulp-rename");//ファイル名の置き換えを行う
-var browserify = require("gulp-browserify");//NodeJSのコードをブラウザ向けコードに変換
-var packageJson = require(__dirname+'/package.json');
-var _tasks = [
-	'client-libs',
-	'.css.scss',
-	'.js'
-];
+let gulp = require('gulp');
+let sass = require('gulp-sass');//CSSコンパイラ
+let autoprefixer = require("gulp-autoprefixer");//CSSにベンダープレフィックスを付与してくれる
+let minifyCss = require('gulp-minify-css');//CSSファイルの圧縮ツール
+let uglify = require("gulp-uglify");//JavaScriptファイルの圧縮ツール
+let concat = require('gulp-concat');//ファイルの結合ツール
+let plumber = require("gulp-plumber");//コンパイルエラーが起きても watch を抜けないようになる
+let rename = require("gulp-rename");//ファイル名の置き換えを行う
+let browserify = require("gulp-browserify");//NodeJSのコードをブラウザ向けコードに変換
+let packageJson = require(__dirname+'/package.json');
 
 // client-libs (frontend) を処理
-gulp.task("client-libs", function() {
-	gulp.src(["node_modules/bootstrap/dist/**/*"])
+gulp.task("client-libs:bootstrap", function() {
+	return gulp.src(["node_modules/bootstrap/dist/**/*"])
 		.pipe(gulp.dest( './libs/resources/bootstrap/' ))
 	;
-	gulp.src(["node_modules/px2style/dist/**/*"])
+});
+gulp.task("client-libs:px2style", function() {
+	return gulp.src(["node_modules/px2style/dist/**/*"])
 		.pipe(gulp.dest( './libs/resources/px2style/' ))
 	;
 });
 
 // src 中の *.css.scss を処理
 gulp.task('.css.scss', function(){
-	gulp.src("src/**/*.css.scss")
+	return gulp.src("src/**/*.css.scss")
 		.pipe(plumber())
 		.pipe(sass({
 			"sourceComments": false
@@ -50,7 +47,7 @@ gulp.task('.css.scss', function(){
 
 // .js (frontend) を処理
 gulp.task(".js", function() {
-	gulp.src(["src/**/*.js"])
+	return gulp.src(["src/**/*.js"])
 		.pipe(plumber())
 		.pipe(browserify({}))
 		.pipe(rename({
@@ -65,9 +62,16 @@ gulp.task(".js", function() {
 	;
 });
 
+let _tasks = gulp.parallel([
+	'client-libs:bootstrap',
+	'client-libs:px2style',
+	'.css.scss',
+	'.js'
+]);
+
 // src 中のすべての拡張子を監視して処理
 gulp.task("watch", function() {
-	gulp.watch(["src/**/*"], _tasks);
+	return gulp.watch(["src/**/*"], _tasks);
 });
 
 // src 中のすべての拡張子を処理(default)
