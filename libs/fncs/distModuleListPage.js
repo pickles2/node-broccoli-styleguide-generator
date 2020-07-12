@@ -82,10 +82,9 @@ module.exports = function(main, pathDistDir, callback){
 											for( var idx in files ){
 												var bin = require('fs').readFileSync(mod.realpath+'/pics/'+files[idx]);
 												bin = utils79.base64_encode(bin);
-												console.log(bin);
+												// console.log(bin);
 												mod.pics.push('data:image/png;base64,'+bin);
 											}
-											// mod.finalizePhp = require('fs').readFileSync(mod.realpath+'/finalize.php').toString();
 										}
 
 										it4.next();

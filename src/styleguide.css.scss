@@ -278,6 +278,19 @@ input[name="tab_item"] {
 			}
 		}
 	}
+	table.px2-table{
+		width: 100%;
+		min-width: 400px;
+		thead th {
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+  		}
+		tbody th,
+		tbody td {
+			overflow: auto;
+		}
+	}
 }
 
 // Sidebar

@@ -245,6 +245,17 @@ input[name="tab_item"] {
     .module-list__cell-pics ul li img {
       height: 4em; }
 
+.module-list table.px2-table {
+  width: 100%;
+  min-width: 400px; }
+  .module-list table.px2-table thead th {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; }
+  .module-list table.px2-table tbody th,
+  .module-list table.px2-table tbody td {
+    overflow: auto; }
+
 .theme-sidebar {
   position: relative;
   height: auto;
