@@ -80,6 +80,24 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 100%;
   margin: 1em 0 0.5em 0; }
 
+.module-readme-pics {
+  margin-top: 3em; }
+  .module-readme-pics p {
+    text-align: center; }
+  .module-readme-pics ul {
+    margin: 1em 0;
+    padding: 0;
+    width: 100%;
+    overflow: auto;
+    display: -ms-flexbox;
+    display: flex; }
+    .module-readme-pics ul li {
+      list-style-type: none;
+      margin-right: 20px; }
+      .module-readme-pics ul li img {
+        height: 120px;
+        width: auto; }
+
 ul {
   -webkit-padding-start: 1em; }
 
@@ -144,16 +162,6 @@ header {
       display: none; }
     .module-content ul.panels > li.panel.active {
       display: block; }
-  .module-content__module-thumb {
-    display: inline-block;
-    width: 120px;
-    height: 120px;
-    margin-right: 2em;
-    vertical-align: middle;
-    background-color: #eee; }
-    .module-content__module-thumb img {
-      width: 100%;
-      height: 100%; }
   .module-content__h4-wrap {
     border: 1px solid #aaa;
     border-radius: 5px;
@@ -167,11 +175,35 @@ header {
   .module-content__readme-wrap {
     display: -ms-flexbox;
     display: flex;
+    -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+    -ms-flex-pack: start;
+        justify-content: flex-start;
+    -ms-flex-line-pack: stretch;
+        align-content: stretch;
     margin-top: 1em;
     border-bottom: 1px solid #aaa;
-    padding: 0 1em 1em 1em; }
+    padding: 0 1em 1em 1em;
+    width: 100%; }
+    .module-content__readme-wrap-thumb {
+      display: inline-block;
+      width: 120px;
+      height: 120px;
+      margin-right: 2em;
+      vertical-align: middle;
+      background-color: #eee;
+      -ms-flex-negative: 0;
+          flex-shrink: 0;
+      -ms-flex-positive: 0;
+          flex-grow: 0; }
+      .module-content__readme-wrap-thumb img {
+        width: 100%;
+        height: 100%; }
     .module-content__readme-wrap-body {
-      padding: 0; }
+      padding: 0;
+      width: calc(100% - 120px - 2em);
+      -ms-flex-positive: 10;
+          flex-grow: 10; }
 
 .tabs {
   margin-top: 50px;

@@ -37,10 +37,21 @@
 			<div class="module-content__h4-wrap">
 				<span id="<%= modList[modId].moduleId %>"></span>
 				<div class="module-content__readme-wrap">
-					<div class="module-content__module-thumb"><% if(modList[modId].thumb){ %><img src="<%= modList[modId].thumb %>" alt="" /><% } %></div>
+					<div class="module-content__readme-wrap-thumb"><% if(modList[modId].thumb){ %><img src="<%= modList[modId].thumb %>" alt="" /><% } %></div>
 					<div class="module-content__readme-wrap-body">
 						<h4 class="module-content__h4-wrap-module-name"><%= modList[modId].moduleName %><small>(<%= modList[modId].moduleId %>)</small></h4>
 						<div class="module-readme"><%- modList[modId].readme %></div>
+
+						<% if(modList[modId].pics && modList[modId].pics.length){ %>
+						<div class="module-readme-pics">
+							<p>参考イメージ</p>
+							<ul>
+							<% for(var picsIdx in modList[modId].pics){ %>
+								<li><a href="<%= modList[modId].pics[picsIdx] %>" target="_blank"><img src="<%= modList[modId].pics[picsIdx] %>" alt="" /></a></li>
+							<% } %>
+							</ul>
+						</div>
+						<% } %>
 					</div>
 				</div>
 

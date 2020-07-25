@@ -83,6 +83,18 @@ module.exports = function(main, pathDistDir, callback){
 											mod.finalizePhp = require('fs').readFileSync(mod.realpath+'/finalize.php').toString();
 										}
 
+										// pics
+										mod.pics = [];
+										if( utils79.is_dir(mod.realpath+'/pics/') ){
+											var files = require('fs').readdirSync(mod.realpath+'/pics/');
+											for( var idx in files ){
+												var bin = require('fs').readFileSync(mod.realpath+'/pics/'+files[idx]);
+												bin = utils79.base64_encode(bin);
+												// console.log(bin);
+												mod.pics.push('data:image/png;base64,'+bin);
+											}
+										}
+
 										// coding-example
 										mod.codingExample = [];
 										var codingExampleHtmlList = [];
