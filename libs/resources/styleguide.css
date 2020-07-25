@@ -37,40 +37,46 @@ h4 {
   color: #000;
   border-bottom: 1px solid #ddd; }
 
-h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
-  font-weight: normal;
-  margin-left: 10px;
-  font-size: 76%; }
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bold; }
+  h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
+    font-weight: normal;
+    margin-left: 10px;
+    font-size: 76%;
+    color: #999; }
 
 .module-readme h1 {
   font-size: 100%;
   margin: 1em 0; }
 
 .module-readme h2 {
-  font-size: 120%;
+  font-weight: bold;
+  font-size: 130%;
   margin: 2em 0 0.5em 0;
-  padding: 10px 0px;
+  padding: 0.8em 0 0.2em;
   border-bottom: 1px solid #000;
   background-color: transparent;
   color: #000; }
 
 .module-readme h3 {
-  font-size: 110%;
+  font-weight: bold;
+  font-size: 120%;
   margin: 1em 0 0.5em 0;
-  padding: 10px 0px;
-  border-bottom: 1px solid #999;
+  padding: 0.8em 0 0.2em;
+  border-bottom: 1px solid #aaa;
   background-color: transparent;
   color: #000; }
 
 .module-readme h4 {
-  font-size: 100%;
+  font-weight: bold;
+  font-size: 105%;
   margin: 1em 0 0.5em 0;
-  padding: 10px 20px;
+  padding: 0;
   background-color: #fff;
-  color: #000;
-  border-bottom: 1px solid #ddd; }
+  color: #000; }
 
 .module-readme h5, .module-readme h6 {
+  font-weight: bold;
   font-size: 100%;
   margin: 1em 0 0.5em 0; }
 
@@ -139,28 +145,41 @@ header {
     .module-content ul.panels > li.panel.active {
       display: block; }
   .module-content__module-thumb {
-    width: 2em;
-    height: 2em;
-    margin-right: 0.6em;
-    vertical-align: middle; }
+    display: inline-block;
+    width: 120px;
+    height: 120px;
+    margin-right: 2em;
+    vertical-align: middle;
+    background-color: #eee; }
+    .module-content__module-thumb img {
+      width: 100%;
+      height: 100%; }
   .module-content__h4-wrap {
     border: 1px solid #aaa;
     border-radius: 5px;
     width: 98%;
     margin: 20px auto; }
-    .module-content__h4-wrap h4 {
+    .module-content__h4-wrap h4.module-content__h4-wrap-module-name {
       border: none;
-      margin: 1em 0 0.5em 0;
+      margin: 0 0 0.5em 0;
+      font-size: large;
       padding: 0; }
-  .module-content__title-wrap {
+  .module-content__readme-wrap {
+    display: -ms-flexbox;
+    display: flex;
+    margin-top: 1em;
     border-bottom: 1px solid #aaa;
     padding: 0 1em 1em 1em; }
+    .module-content__readme-wrap-body {
+      padding: 0; }
 
 .tabs {
   margin-top: 50px;
   padding: 1em;
   background-color: #fff;
   margin: 0 auto; }
+  .tabs label {
+    margin: 0; }
 
 .tab_item {
   width: calc(100%/8);
@@ -175,7 +194,14 @@ header {
   float: left;
   text-align: center;
   font-weight: bold;
-  transition: all 0.2s ease; }
+  transition: all 0.2s ease;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap; }
+  .tab_item * {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; }
 
 .tab_item:hover {
   opacity: 0.75; }
@@ -286,8 +312,8 @@ input[name="tab_item"] {
     top: 20px;
     margin-left: -50px;
     border-radius: 5px 0 0 5px;
-    background: #000;
-    opacity: 0.75;
+    background: #333;
+    opacity: 0.85;
     color: #FFF;
     padding: 30px 0;
     width: 50px;

@@ -32,10 +32,12 @@ h4{
 	border-bottom: 1px solid #ddd;
 }
 h1,h2,h3,h4,h5,h6{
+	font-weight: bold;
 	small{
 		font-weight: normal;
 		margin-left: 10px;
 		font-size: 76%;
+		color: #999;
 	}
 }
 .module-readme{
@@ -44,30 +46,33 @@ h1,h2,h3,h4,h5,h6{
 		margin: 1em 0;
 	}
 	h2{
-		font-size: 120%;
+		font-weight: bold;
+		font-size: 130%;
 		margin: 2em 0 0.5em 0;
-		padding: 10px 0px;
+		padding: 0.8em 0 0.2em;
 		border-bottom: 1px solid #000;
 		background-color: transparent;
 		color: #000;
 	}
 	h3{
-		font-size: 110%;
+		font-weight: bold;
+		font-size: 120%;
 		margin: 1em 0 0.5em 0;
-		padding: 10px 0px;
-		border-bottom: 1px solid #999;
+		padding: 0.8em 0 0.2em;
+		border-bottom: 1px solid #aaa;
 		background-color: transparent;
 		color: #000;
 	}
 	h4{
-		font-size: 100%;
+		font-weight: bold;
+		font-size: 105%;
 		margin: 1em 0 0.5em 0;
-		padding: 10px 20px;
+		padding: 0;
 		background-color: #fff;
 		color: #000;
-		border-bottom: 1px solid #ddd;
 	}
 	h5, h6{
+		font-weight: bold;
 		font-size: 100%;
 		margin: 1em 0 0.5em 0;
 	}
@@ -156,10 +161,16 @@ header{
 		}
 	}
 	&__module-thumb{
-		width: 2em;
-		height: 2em;
-		margin-right: 0.6em;
+		display: inline-block;
+		width: 120px;
+		height: 120px;
+		margin-right: 2em;
 		vertical-align: middle;
+		background-color: #eee;
+		img {
+			width: 100%;
+			height: 100%;
+		}
 	}
 
 	&__h4-wrap {
@@ -168,16 +179,22 @@ header{
 		width: 98%;
 		margin: 20px auto;
 
-		h4 {
+		h4.module-content__h4-wrap-module-name {
 			border: none;
-			margin: 1em 0 0.5em 0;
+			margin: 0 0 0.5em 0;
+			font-size: large;
 			padding: 0;
 		}
 	}
 
-	&__title-wrap {
+	&__readme-wrap {
+		display: flex;
+		margin-top: 1em;
 		border-bottom: 1px solid #aaa;
 		padding: 0 1em 1em 1em;
+		&-body {
+			padding: 0;
+		}
 	}
 }
 .tabs {
@@ -185,6 +202,9 @@ header{
 	padding: 1em;
 	background-color: #fff;
 	margin: 0 auto;
+	label {
+		margin: 0;
+	}
 }
 .tab_item {
 	width: calc(100%/8);
@@ -200,6 +220,15 @@ header{
 	text-align: center;
 	font-weight: bold;
 	transition: all 0.2s ease;
+
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	* {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
 }
 .tab_item:hover {
 	opacity: 0.75;
@@ -329,8 +358,8 @@ input[name="tab_item"] {
 		top: 20px;
 		margin-left: -50px;
 		border-radius: 5px 0 0 5px;
-		background: #000;
-		opacity: 0.75;
+		background: #333;
+		opacity: 0.85;
 		color: #FFF;
 		padding: 30px 0;
 		width: 50px;

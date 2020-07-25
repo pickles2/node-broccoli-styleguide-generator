@@ -16,77 +16,84 @@
 		<header>
 			<div class="theme-title">
 				<h1><% if (siteInfo.title){ %><%= siteInfo.title %> <% } %>Style Guide</h1>
-			</div>		
+			</div>
 		</header>
 		<div class="theme-main">
 			<div class="contents">
 
 <div class="module-content">
 <% for (var pkgId in pkgList) { %>
-<% catList = pkgList[pkgId].categories %>
-<span id="<%= pkgList[pkgId].packageId %>"></span>
-<h2><%= pkgList[pkgId].packageName %><small>(<%= pkgList[pkgId].packageId %>)</small></h2>
+	<% catList = pkgList[pkgId].categories %>
+	<span id="<%= pkgList[pkgId].packageId %>"></span>
+	<h2><%= pkgList[pkgId].packageName %><small>(<%= pkgList[pkgId].packageId %>)</small></h2>
 
-<% for (var catId in catList) { %>
-<% modList = catList[catId].modules %>
-<span id="<%= pkgList[pkgId].packageId %>:<%= catList[catId].categoryId %>"></span>
-<h3><%= catList[catId].categoryName %><small>(<%= catList[catId].categoryId %>)</small></h3>
+	<% for (var catId in catList) { %>
+		<% modList = catList[catId].modules %>
+		<span id="<%= pkgList[pkgId].packageId %>:<%= catList[catId].categoryId %>"></span>
+		<h3><%= catList[catId].categoryName %><small>(<%= catList[catId].categoryId %>)</small></h3>
 
-<% for (var modId in modList) { %>
-<%# console.log(modList[modId]) %>
-<div class="module-content__h4-wrap">
-<div class="module-content__title-wrap">
-<span id="<%= modList[modId].moduleId %>"></span>
-<h4><% if(modList[modId].thumb){ %><img src="<%= modList[modId].thumb %>" alt="" class="module-content__module-thumb" /><% } %><%= modList[modId].moduleName %><small>(<%= modList[modId].moduleId %>)</small></h4>
+		<% for (var modId in modList) { %>
+			<%# console.log(modList[modId]) %>
+			<div class="module-content__h4-wrap">
+				<span id="<%= modList[modId].moduleId %>"></span>
+				<div class="module-content__readme-wrap">
+					<div class="module-content__module-thumb"><% if(modList[modId].thumb){ %><img src="<%= modList[modId].thumb %>" alt="" /><% } %></div>
+					<div class="module-content__readme-wrap-body">
+						<h4 class="module-content__h4-wrap-module-name"><%= modList[modId].moduleName %><small>(<%= modList[modId].moduleId %>)</small></h4>
+						<div class="module-readme"><%- modList[modId].readme %></div>
+					</div>
+				</div>
 
-	<div class="module-readme">
-<%- modList[modId].readme %>
-	</div>
+				<% for (var codingExampleIdx in modList[modId].codingExample) { %>
+				<div class="module-preview tabs">
+					<label class="tab_item" for="preview">Preview</label>
+					<div id="preview_content">
+						<iframe src="index_files/coding-example/<%= modList[modId].codingExample[codingExampleIdx].path %>"></iframe>
+						<pre><code><%= modList[modId].codingExample[codingExampleIdx].src %></code></pre>
+					</div>
+				</div>
+				<% } %>
 
-</div>
+				<% if(!modList[modId].clip){ %>
+				<div class="module-src-codes">
 
-<% for (var codingExampleIdx in modList[modId].codingExample) { %>
-<div class="module-preview tabs">
-<label class="tab_item" for="preview">Preview</label>
-<div id="preview_content">
-<iframe src="index_files/coding-example/<%= modList[modId].codingExample[codingExampleIdx].path %>"></iframe>
-<pre><code><%= modList[modId].codingExample[codingExampleIdx].src %></code></pre>
-</div>
-</div>
-<% } %>
+					<ul class="tabs">
+						<% if(!modList[modId].clip){ %><li id="tab1" class="tab_item active"><a href="#cont1_<%= pkgId %>_<%= catId %>_<%= modId %>">Template</a></li><% } %>
+						<li id="tab2" class="tab_item"><a href="#cont2_<%= pkgId %>_<%= catId %>_<%= modId %>">Style Sheet</a></li>
+						<li id="tab3" class="tab_item"><a href="#cont3_<%= pkgId %>_<%= catId %>_<%= modId %>">Java Script</a></li>
+						<% if(modList[modId].finalizeJs.length){ %><li id="tab4" class="tab_item"><a href="#cont4_<%= pkgId %>_<%= catId %>_<%= modId %>">finalize.js</a></li><% } %>
+						<% if(modList[modId].finalizePhp.length){ %><li id="tab5" class="tab_item"><a href="#cont5_<%= pkgId %>_<%= catId %>_<%= modId %>">finalize.php</a></li><% } %>
+					</ul>
 
-<div class="module-src-codes">
+					<ul class="panels">
+						<% if(!modList[modId].clip){ %>
+						<li id="cont1_<%= pkgId %>_<%= catId %>_<%= modId %>" class="panel active">
+							<pre><code><%= modList[modId].template %></code></pre>
+						</li>
+						<% } %>
+						<li id="cont2_<%= pkgId %>_<%= catId %>_<%= modId %>" class="panel">
+							<pre><code><%= modList[modId].css %></code></pre>
+						</li>
+						<li id="cont3_<%= pkgId %>_<%= catId %>_<%= modId %>" class="panel">
+							<pre><code><%= modList[modId].js %></code></pre>
+						</li>
+						<% if(modList[modId].finalizeJs.length){ %>
+						<li id="cont4_<%= pkgId %>_<%= catId %>_<%= modId %>" class="panel">
+							<pre><code><%= modList[modId].finalizeJs %></code></pre>
+						</li>
+						<% } %>
+						<% if(modList[modId].finalizePhp.length){ %>
+						<li id="cont5_<%= pkgId %>_<%= catId %>_<%= modId %>" class="panel">
+							<pre><code><%= modList[modId].finalizePhp %></code></pre>
+						</li>
+						<% } %>
+					</ul>
 
-	<ul class="tabs">
-		<li id="tab1" class="tab_item active"><a href="#cont1_<%= pkgId %>_<%= catId %>_<%= modId %>">Template</a></li>
-		<li id="tab2" class="tab_item"><a href="#cont2_<%= pkgId %>_<%= catId %>_<%= modId %>">Style Sheet</a></li>
-		<li id="tab3" class="tab_item"><a href="#cont3_<%= pkgId %>_<%= catId %>_<%= modId %>">Java Script</a></li>
-		<% if(modList[modId].finalizeJs.length){ %><li id="tab4" class="tab_item"><a href="#cont4_<%= pkgId %>_<%= catId %>_<%= modId %>">finalize.js</a></li><% } %>
-		<% if(modList[modId].finalizePhp.length){ %><li id="tab5" class="tab_item"><a href="#cont5_<%= pkgId %>_<%= catId %>_<%= modId %>">finalize.php</a></li><% } %>
-	</ul>
-
-	<ul class="panels">
-		<li id="cont1_<%= pkgId %>_<%= catId %>_<%= modId %>" class="panel active">
-			<pre><code><%= modList[modId].template %></code></pre>
-		</li>
-		<li id="cont2_<%= pkgId %>_<%= catId %>_<%= modId %>" class="panel">
-			<pre><code><%= modList[modId].css %></code></pre>
-		</li>
-		<li id="cont3_<%= pkgId %>_<%= catId %>_<%= modId %>" class="panel">
-			<pre><code><%= modList[modId].js %></code></pre>
-		</li>
-		<li id="cont4_<%= pkgId %>_<%= catId %>_<%= modId %>" class="panel">
-			<pre><code><%= modList[modId].finalizeJs %></code></pre>
-		</li>
-		<li id="cont5_<%= pkgId %>_<%= catId %>_<%= modId %>" class="panel">
-			<pre><code><%= modList[modId].finalizePhp %></code></pre>
-		</li>
-	</ul>
-
-</div>
-</div>
-<% } %>
-<% } %>
+				</div>
+				<% } %>
+			</div>
+		<% } %>
+	<% } %>
 <% } %>
 
 	<div class="theme-counter">

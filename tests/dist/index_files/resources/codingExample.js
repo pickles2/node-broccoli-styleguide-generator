@@ -10888,7 +10888,7 @@ window.addEventListener(
 			var hw = {};
 			hw.h = Math.max.apply( null, [document.body.clientHeight, document.body.scrollHeight, document.documentElement.scrollHeight, document.documentElement.clientHeight] );
 			hw.w = Math.max.apply( null, [document.body.clientWidth, document.body.scrollWidth, document.documentElement.scrollWidth, document.documentElement.clientWidth] );
-            hw.h = $('.broccoli-styleguide-bodyinner').outerHeight() + 32;
+            hw.h = $('.broccoli-styleguide-bodyinner').outerHeight() + 64;
 			callbackMessage(data.callback, hw);
 			return;
 
